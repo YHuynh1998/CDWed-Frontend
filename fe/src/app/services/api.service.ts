@@ -11,6 +11,7 @@ export class ApiService {
   baseUrl = 'http://localhost:8081/';
   apiUrl = {
     employees: {
+      getEmp: `${this.baseUrl}employee`,
       home: `${this.baseUrl}employees`
     },
     workingTimes: {
@@ -25,6 +26,9 @@ export class ApiService {
   };
 
   get<T>(url: string): Observable<T> {
+    return this.http.get<T>(url);
+  }
+  getID<T>(url: string,id: Number): Observable<T> {
     return this.http.get<T>(url);
   }
   post<T>(url: string, data: Object): Observable<T> {
