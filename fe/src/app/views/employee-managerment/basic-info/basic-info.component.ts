@@ -5,6 +5,7 @@ import {Job} from '../../../models/job';
 import { ModalDirective } from 'ngx-bootstrap/modal';
 import { HttpClient } from '@angular/common/http';
 import {ExcelService} from '../../../services/excel.service';
+import { EmployeesService } from '../../../services/employees.service';
 
 
 @Component({
@@ -19,21 +20,22 @@ export class BasicInfoComponent implements OnInit {
   @ViewChild('materialModal', { static: false }) materialModal: ModalDirective;
 
   columns = [
-    { name: 'Name', prop: 'F_Name ', sortTable: true },
-    { name: 'Lương cơ bản',prop: 'Salary', sortTable: true },
-    { name: 'Email', sortTable: true },
-    { name: 'Địa chỉ', sortTable: true },
+    { name: 'Họ', prop: 'firstName', sortTable: true },
+    { name: 'Tên', prop: 'lastName', sortTable: true },
+    { name: 'Lương cơ bản',prop: 'salary', sortTable: true },
+    { name: 'Email',prop: 'email', sortTable: true },
   ];
   employees: Employee[] = [];
-  employee: Employee = {Emp_ID: 0} as Employee;
+  employee: Employee = {id: 0} as Employee;
   img: any = 'https://screenshotlayer.com/images/assets/placeholder.png';
   imgName: string = 'Choose file';
   public imagePath;
   public job: any;
   choosedEmp: Employee = {
-    Emp_ID: 0,
-    F_Name: '',
-    L_Name: '',
+    id: 0,
+    firstName: '',
+    lastName: '',
+    phoneNumber:'',
     image: 'https://screenshotlayer.com/images/assets/placeholder.png',
     IDCard: '',
     Hire_Date: null,
@@ -41,7 +43,7 @@ export class BasicInfoComponent implements OnInit {
     address: '',
     salary: 0, 
     commission: 0,
-    isActive:true, 
+    active:1, 
     Manager_ID: null,
     Department_ID:null
 };
@@ -49,7 +51,7 @@ export class BasicInfoComponent implements OnInit {
 
 
 
-  constructor(private http: HttpClient, private excelService: ExcelService) { }
+  constructor(private http: HttpClient, private excelService: ExcelService, private employeesService: EmployeesService) { }
 
   ngOnInit(): void {
     this.loadEmployee();
@@ -65,10 +67,11 @@ export class BasicInfoComponent implements OnInit {
     .subscribe((res) => {
       this.job = res.job;
     });
-    this.http.get<any>('../../../../employee')
-    .subscribe((res) => {
-      this.employees = res.employee;
-    });
+    this.employeesService.list().subscribe(res => {
+      this.employees = res;
+      console.log(res);
+      console.log(this.employees);
+  });
       console.log(this.employees);
   };
 
@@ -89,7 +92,6 @@ exportAsXLSX() {
 
 choose(row){
   this.choosedEmp = row;
-  this.choosedEmp.Hire_Date = new Date();
   console.log(this.choosedEmp);
 }
 

@@ -1,18 +1,18 @@
 import {Department} from './department';
 
 export interface Employee {
-    Emp_ID: number;
-    F_Name: string;
-    L_Name: string;
+    id: number;
+    firstName: string;
+    lastName: string;
+    email: string;
+    phoneNumber: string;
+    salary: number;
+    active: number;
     image: string;
     IDCard: string;
     Hire_Date: Date;
-    email: string;
     address: string;
-    salary: number;
     commission: number;
     Manager_ID: number;
     Department_ID: Department;
-    isActive: boolean;
-
 }

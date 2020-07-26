@@ -17,23 +17,78 @@
       </div>
     </div>
     <div class="card-body">
-      <div class="table-responsive">
-        <table class="table table-bordered">
-          <thead>
-            <tr>
-              <th scope="col">Họ Tên</th>
-              <th scope="col">Email</th>
-              <th scope="col">Số điện thoại</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr *ngFor="let e of employees">
-              <td>{{e.firtName}} {{e.lastName}}</td>
-              <td>{{e.email}}</td>
-              <td>{{e.phone_number}}</td>
-            </tr>
-          </tbody>
-        </table>
+      <div class="table-datatable">
+        <ngx-datatable 
+          class="material" 
+          [rows]="employees" 
+          [rowHeight]="50" 
+          [columnMode]="'force'" 
+          [sortType]="'multi'" 
+          [headerHeight]="50" 
+          [footerHeight]="50"
+          [offset]="page.pageNumber"
+          [limit]="page.size" >
+            <ngx-datatable-column name="Tên" >
+                <ng-template let-row="row" ngx-datatable-cell-template>
+                    <span class="cursor-hover" (click)="choose(row)">{{ row.firtName}} {{row.lastName}}</span>
+                </ng-template>
+            </ngx-datatable-column>
+            <ngx-datatable-column name="Email" >
+              <ng-template let-row="row" ngx-datatable-cell-template>
+                  <span class="cursor-hover" (click)="choose(row)">{{ row.email}}</span>
+              </ng-template>
+            </ngx-datatable-column>
+            <ngx-datatable-column name="Số điện thoại">
+              <ng-template let-row="row" ngx-datatable-cell-template>
+                <span class="cursor-hover">{{ row.phoneNumber}}</span>
+            </ng-template>
+            </ngx-datatable-column>
+            <ngx-datatable-column name="Thao tác" [width]="40">
+                <ng-template let-row="row" ngx-datatable-cell-template>
+                    <i (click)="openEdit(row.id)" class="fa fa-edit text-primary mr-1 pointer"></i>
+                    <i (click)="delete(row.id)" class="fa fa-trash-o text-danger pointer"></i>
+                </ng-template>
+          </ngx-datatable-column>
+        </ngx-datatable>
+      </div>
+    </div>
+  </div>
+
+
+  <div bsModal #editModal="bs-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="dialog-child-name">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <form [formGroup]="employeeForm" (ngSubmit)="save()">
+          <div class="modal-header">
+            <h4 id="dialog-child-name" class="modal-title pull-left">Nhân viên</h4>
+            <!-- <button type="button" class="close pull-right" aria-label="Close" (click)="hideModal()">
+            <span aria-hidden="true">&times;</span>
+          </button> -->
+          </div>
+          <div class="modal-body">
+  
+            <div class="form-group">
+              <label for="firstName">Họ</label>
+              <input type="text" class="form-control" id="firstName" formControlName="firstName">
+            </div>
+            <div class="form-group">
+              <label for="lastName">Tên</label>
+              <input type="text" class="form-control" id="lastName" formControlName="lastName">
+            </div>
+            <div class="form-group">
+              <label for="phoneNumber">Số điện thoại</label>
+              <textarea class="form-control" id="phoneNumber" formControlName="phoneNumber" rows="3"></textarea>
+            </div>
+            <div class="form-group">
+              <label for="email">Email</label>
+              <textarea class="form-control" id="email" formControlName="email" rows="3"></textarea>
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary">Đóng</button>
+            <button type="submit" class="btn btn-primary">Lưu</button>
+          </div>
+        </form>
       </div>
     </div>
   </div>

@@ -3,6 +3,7 @@ import { ApiService } from './api.service';
 import { RootObj } from '../models/root-obj';
 import { Observable } from 'rxjs';
 import { EmployeeList } from '../models/employee-list';
+import { Employee } from '../models/employee';
 
 
 @Injectable({
@@ -11,8 +12,8 @@ import { EmployeeList } from '../models/employee-list';
 export class EmployeesService {
   constructor(private apiService: ApiService) { }
 
-  list(): Observable<RootObj<[EmployeeList]>> {
-    return this.apiService.get<RootObj<[EmployeeList]>>
+  list(): Observable<RootObj<[Employee]>> {
+    return this.apiService.get<RootObj<[Employee]>>
       (`${this.apiService.apiUrl.employees.home}`);
   }
 
