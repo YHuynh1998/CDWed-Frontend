@@ -110,7 +110,7 @@
                             *ngIf="img">
                     </div>
                     <div class="col-9">
-                        <div class="h3">Cố vấn tối cao tổng thống donal chum</div>
+                        <div class="h3"></div>
                         </div>
                     </div>
             </tab>
@@ -170,8 +170,8 @@
             </ngx-datatable-column>
             <ngx-datatable-column name="Thao tác" [width]="40">
                 <ng-template let-row="row" ngx-datatable-cell-template>
-                    <i (click)="openEdit(row.Emp_ID)" class="fa fa-edit text-primary mr-1 pointer"></i>
-                    <i (click)="delete(row.Emp_ID)" class="fa fa-trash-o text-danger pointer"></i>
+                    <i (click)="showAddModal(row.id)" class="fa fa-edit text-primary mr-1 pointer"></i>
+                    <i (click)="delete(row.id)" class="fa fa-trash-o text-danger pointer"></i>
                 </ng-template>
             </ngx-datatable-column>
         </ngx-datatable>
@@ -195,7 +195,7 @@
                             <div class="row form-group ">
                                 <div class="col-6">
                                     <label for="pwd">Họ</label>
-                                    <input type="text" class="form-control" [(ngModel)]="employee.firstName" name="firstName">
+                                    <input type="text" class="form-control" [(ngModel)]="employee.firstName" name="firstName" placeholder="employee.firstName">
                                 </div>
                                 <div class="col-6">
                                     <label for="pwd">Tên</label>
