@@ -79,7 +79,7 @@ export class BasicInfoComponent implements OnInit {
     console.log('id', id);
     if(id){
       this.employeesService.getEmpById(id).subscribe(res => {
-        this.employee = res;
+        this.employee = res.data;
       });
       this.employee.id = id;
     }
