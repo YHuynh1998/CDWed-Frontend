@@ -14,4 +14,12 @@ export class DeparmentService {
     return this.apiService.get<RootObj<[Department]>>
       (`${this.apiService.apiUrl.deparments.home}`);
   }
+
+  save(data: Department): Observable<RootObj<Department>> {
+    if (!data.id) {
+      return this.apiService.post<RootObj<Department>>(this.apiService.apiUrl.deparments.home, data);
+    } else {
+      return this.apiService.put<RootObj<Department>>(`${this.apiService.apiUrl.deparments.home}/${data.id}`, data);
+    }
+  }
 }
