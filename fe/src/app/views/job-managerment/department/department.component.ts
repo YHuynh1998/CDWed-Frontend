@@ -18,7 +18,7 @@ export class DepartmentComponent implements OnInit {
   @ViewChild('materialModal', { static: false }) materialModal: ModalDirective;
   departments: Department[] = [];
   department: Department = {} as Department;
-  public employee: any;
+  // public employee: any;
   img: any = 'https://screenshotlayer.com/images/assets/placeholder.png';
   imgName: string = 'Choose file';
 
@@ -40,7 +40,7 @@ export class DepartmentComponent implements OnInit {
   loadDepartment() {
     this.http.get<any>('../../../../assets/job.json')
       .subscribe((res) => {
-        this.employee = res.job;
+        // this.employee = res.job;
       });
     this.departmentService.list().subscribe(res => {
       this.departments = res.data;
@@ -65,13 +65,15 @@ export class DepartmentComponent implements OnInit {
     this.editModal.hide();
   }
 
-  deparmentForm = new FormGroup({
-    name: new FormControl(''),
-    bio: new FormControl(''),
-    workingTimeDetails: new FormArray([]),
-  });
+  // deparmentForm = new FormGroup({
+  //   name: new FormControl(''),
+  //   bio: new FormControl(''),
+  //   workingTimeDetails: new FormArray([]),
+  // });
   save() {
-    this.departmentService.save(this.employee).subscribe(res => {
+    this.departmentService.save(this.department).subscribe(res => {
+      console.log("hhhhh"+this.department);
+      
       this.departments.push(res.data)
       this.loadDepartment();
     })
