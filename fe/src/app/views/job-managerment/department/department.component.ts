@@ -45,7 +45,7 @@ export class DepartmentComponent implements OnInit {
     this.departmentService.list().subscribe(res => {
       this.departments = res.data;
       console.log(res);
-      console.log("tesssss"+this.departments);
+      console.log("tesssss" + this.departments);
     });
     console.log(this.departments);
   };
@@ -70,5 +70,10 @@ export class DepartmentComponent implements OnInit {
     bio: new FormControl(''),
     workingTimeDetails: new FormArray([]),
   });
-
+  save() {
+    this.departmentService.save(this.employee).subscribe(res => {
+      this.departments.push(res.data)
+      this.loadDepartment();
+    })
+  }
 }

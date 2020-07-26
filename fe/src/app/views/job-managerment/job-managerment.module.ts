@@ -7,6 +7,7 @@ import { DepartmentComponent } from './department/department.component';
 import { WorkingScheduleComponent } from './working-schedule/working-schedule.component';
 import { JobTestComponent } from './job-test/job-test.component';
 import { NgxDatatableModule } from '@swimlane/ngx-datatable';
+import { FormsModule } from '@angular/forms';
 
 
 @NgModule({
@@ -15,7 +16,8 @@ import { NgxDatatableModule } from '@swimlane/ngx-datatable';
     CommonModule,
     ModalModule.forChild(),
     JobManagermentRoutingModule,
-    NgxDatatableModule 
+    NgxDatatableModule ,
+    FormsModule
   ]
 })
 export class JobManagermentModule { }

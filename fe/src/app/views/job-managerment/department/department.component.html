@@ -47,32 +47,30 @@
     <div bsModal #editModal="bs-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="dialog-child-name">
         <div class="modal-dialog">
           <div class="modal-content">
-            <form (ngSubmit)="save()">
+            <form enctype="multipart/form-data">
               <div class="modal-header">
                 <h4 id="dialog-child-name" class="modal-title pull-left">Phòng ban</h4>
                 <button type="button" class="close pull-right" aria-label="Close" (click)="hideModal()">
                     <span aria-hidden="true">&times;</span>
                 </button>
               </div>
-
               <div class="modal-body">
-      
           <div class="form-group">
             <label for="name">Tên phòng ban</label>
-            <input type="text" class="form-control" id="name" formControlName="name">
+            <input type="text" class="form-control" id="name" [(ngModel)]="department.name">
           </div>
           <div class="form-group">
             <label for="name">Người quản lý</label>
-            <input type="text" class="form-control" id="name" formControlName="name">
+            <input type="text" class="form-control" id="locationId" [(ngModel)]="department.locationId">
           </div>
-          <div class="form-group">
+          <!-- <div class="form-group">
             <label for="bio">Địa chỉ</label>
             <textarea class="form-control" id="bio" formControlName="bio" rows="3"></textarea>
-          </div>
+          </div> -->
               </div>
               <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" (click)="hideModal()">Đóng</button>
-                <button type="submit" class="btn btn-primary">Lưu</button>
+                <button type="submit" class="btn btn-primary" (click)="save()">Lưu</button>
               </div>
             </form>
           </div>
