@@ -20,7 +20,7 @@ export class ApiService {
       home: `${this.baseUrl}time-slots`
     },
     deparments: {
-      home: `${this.baseUrl}deparment`
+      home: `${this.baseUrl}department`
     }
   };
 

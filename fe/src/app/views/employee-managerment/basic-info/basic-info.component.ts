@@ -68,7 +68,7 @@ export class BasicInfoComponent implements OnInit {
       this.job = res.job;
     });
     this.employeesService.list().subscribe(res => {
-      this.employees = res;
+      this.employees = res.data;
       console.log(res);
       console.log(this.employees);
   });
