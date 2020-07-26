@@ -1,24 +1,89 @@
-<p>department works!</p>
-<button type="button" (click)="showAddModal()" class="btn btn-primary"><i class="fa fa-plus"></i>
-    Add</button>
-
-
-
+<div class="card mt-2">
+        <div class="card-header">
+            <div class="row">
+                <div class="col">
+                    <span>Danh sách phòng ban: </span>
+                    <!-- <select [(ngModel)]="customerTypeId" (change)="loadCustomer()">
+                          <option value="0"> --- All ---</option>
+                          <option *ngFor="let aCUT of customerTypes" value="{{aCUT.id}}">
+                              {{aCUT.name}}
+                          </option>
+                      </select> -->
+                </div>
+                <div class="col-auto">
+                    <button type="button" (click)="exportAsXLSX()" class="btn btn-success"><i class="fa fa-download"></i>
+                        Export</button>
+    
+                        <button type="button" (click)="showAddModal()" class="btn btn-primary"><i class="fa fa-plus"></i>
+                            Add</button>                        
+                </div>
+            </div>
+        </div>
+        <!-- <div class="card-body">
+            <ngx-datatable 
+                class="material" 
+                [limit]="10" 
+                [rows]="employees" 
+                [rowHeight]="50" 
+                [columns]="columns"
+                [columnMode]="'force'" 
+                [sortType]="'multi'" 
+                [headerHeight]="50" 
+                [footerHeight]="50">
+                <ngx-datatable-column name="Họ Tên" >
+                    <ng-template let-row="row" ngx-datatable-cell-template>
+                        <span class="cursor-hover" (click)="choose(row)">{{ row.firstName}} {{ row.lastName}}</span>
+                    </ng-template>
+                </ngx-datatable-column>
+                <ngx-datatable-column name="Lương cơ bản" prop="salary">
+    
+                </ngx-datatable-column>
+                <ngx-datatable-column name="Email">
+                    <ng-template let-row="row" ngx-datatable-cell-template>
+                        <span>{{ row.email}}</span>
+                    </ng-template>
+                </ngx-datatable-column>
+                <ngx-datatable-column name="Số điện thoại" [sortable]="true">
+                    <ng-template let-row="row" ngx-datatable-cell-template>
+                        <span>{{ row.phoneNumber}}</span>
+                    </ng-template>
+                </ngx-datatable-column>
+                <ngx-datatable-column name="Thao tác" [width]="40">
+                    <ng-template let-row="row" ngx-datatable-cell-template>
+                        <i (click)="openEdit(row.Emp_ID)" class="fa fa-edit text-primary mr-1 pointer"></i>
+                        <i (click)="delete(row.Emp_ID)" class="fa fa-trash-o text-danger pointer"></i>
+                    </ng-template>
+                </ngx-datatable-column>
+            </ngx-datatable>
+        </div> -->
+    </div>
+    <!-- model add -->
     <div bsModal #editModal="bs-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="dialog-child-name">
         <div class="modal-dialog">
           <div class="modal-content">
             <form (ngSubmit)="save()">
               <div class="modal-header">
                 <h4 id="dialog-child-name" class="modal-title pull-left">Phòng ban</h4>
-                <!-- <button type="button" class="close pull-right" aria-label="Close" (click)="hideModal()">
-                <span aria-hidden="true">&times;</span>
-              </button> -->
+               
               </div>
+
               <div class="modal-body">
       
+          <div class="form-group">
+            <label for="name">Tên phòng ban</label>
+            <input type="text" class="form-control" id="name" formControlName="name">
+          </div>
+          <div class="form-group">
+            <label for="name">Người quản lý</label>
+            <input type="text" class="form-control" id="name" formControlName="name">
+          </div>
+          <div class="form-group">
+            <label for="bio">Địa chỉ</label>
+            <textarea class="form-control" id="bio" formControlName="bio" rows="3"></textarea>
+          </div>
               </div>
               <div class="modal-footer">
-                <button type="button" class="btn btn-secondary">Đóng</button>
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Đóng</button>
                 <button type="submit" class="btn btn-primary">Lưu</button>
               </div>
             </form>
