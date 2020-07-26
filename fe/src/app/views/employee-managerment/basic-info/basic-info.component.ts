@@ -26,7 +26,7 @@ export class BasicInfoComponent implements OnInit {
     { name: 'Email',prop: 'email', sortTable: true },
   ];
   employees: Employee[] = [];
-  employee: Employee = {id: 0} as Employee;
+  employee: Employee = {} as Employee;
   img: any = 'https://screenshotlayer.com/images/assets/placeholder.png';
   imgName: string = 'Choose file';
   public imagePath;
@@ -45,7 +45,7 @@ export class BasicInfoComponent implements OnInit {
     commission: 0,
     active:1, 
     Manager_ID: null,
-    Department_ID:null
+    deparment:1
 };
 
 
@@ -95,6 +95,15 @@ choose(row){
   console.log(this.choosedEmp);
 }
 
+save() {
+  this.employee.active = 1;
+  this.employeesService.save(this.employee).subscribe(res => {
+    this.employees.push(res.data);
+    this.loadEmployee();
+  });
+
+}
+
 preview(files) {
   if (files.length === 0)
     return;
@@ -112,5 +121,7 @@ preview(files) {
     this.img = reader.result; 
     
   }
+
+
 }
 }

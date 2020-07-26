@@ -1,123 +1,27 @@
-<div class="card mt-2">
-    <div class="card-header">
-        <div class="row">
-            <div class="col">
-                <span>Danh sách phòng ban: </span>
-            </div>
-            <div class="col-auto">
-                <button type="button" (click)="exportAsXLSX()" class="btn btn-success"><i class="fa fa-download"></i>
-                    Export</button>
+<p>department works!</p>
+<button type="button" (click)="showAddModal()" class="btn btn-primary"><i class="fa fa-plus"></i>
+    Add</button>
 
-                <button type="button" (click)="showAddModal()" class="btn btn-primary"><i class="fa fa-plus"></i>
-                    Add</button>
-            </div>
+
+
+    <div bsModal #editModal="bs-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="dialog-child-name">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <form (ngSubmit)="save()">
+              <div class="modal-header">
+                <h4 id="dialog-child-name" class="modal-title pull-left">Phòng ban</h4>
+                <!-- <button type="button" class="close pull-right" aria-label="Close" (click)="hideModal()">
+                <span aria-hidden="true">&times;</span>
+              </button> -->
+              </div>
+              <div class="modal-body">
+      
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-secondary">Đóng</button>
+                <button type="submit" class="btn btn-primary">Lưu</button>
+              </div>
+            </form>
+          </div>
         </div>
-    </div>
-    <div class="card-body">
-         <!-- <ngx-datatable
-            class="material" 
-            [limit]="3" 
-            [rows]="employees" 
-            [rowHeight]="50" 
-            [columns]="columns"
-            [columnMode]="'force'" 
-            [sortType]="'multi'" 
-            [headerHeight]="50" 
-            [footerHeight]="50">
-            <ngx-datatable-column name="Họ Tên" >
-                <ng-template let-row="row" ngx-datatable-cell-template>
-                    <span class="cursor-hover" (click)="choose(row)">{{ row.firstName}} {{ row.lastName}}</span>
-                </ng-template>
-            </ngx-datatable-column>
-            <ngx-datatable-column name="Lương cơ bản" prop="salary">
-
-            </ngx-datatable-column>
-            <ngx-datatable-column name="Email">
-                <ng-template let-row="row" ngx-datatable-cell-template>
-                    <span>{{ row.email}}</span>
-                </ng-template>
-            </ngx-datatable-column>
-            <ngx-datatable-column name="Số điện thoại" [sortable]="true">
-                <ng-template let-row="row" ngx-datatable-cell-template>
-                    <span>{{ row.phoneNumber}}</span>
-                </ng-template>
-            </ngx-datatable-column>
-            <ngx-datatable-column name="Thao tác" [width]="40">
-                <ng-template let-row="row" ngx-datatable-cell-template>
-                    <i (click)="openEdit(row.Emp_ID)" class="fa fa-edit text-primary mr-1 pointer"></i>
-                    <i (click)="delete(row.Emp_ID)" class="fa fa-trash-o text-danger pointer"></i>
-                </ng-template>
-            </ngx-datatable-column>
-        </ngx-datatable> -->
-    </div>
-</div>
-
-<!-- -------------------------------------------------------- -->
- <!-- <div bsModal #addModal="bs-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="dialog-child-name">
-    <div class="modal-dialog modal-lg">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h4 id="dialog-child-name" class="modal-title pull-left"> Employee</h4>
-                <button type="button" class="close pull-right" aria-label="Close" (click)="hideModal()">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <div class="modal-body">
-                <form enctype="multipart/form-data">
-                    <div class="row">
-                        <div class="col-9">
-                            <div class="row form-group ">
-                                <div class="col-6">
-                                    <label for="pwd">Họ</label>
-                                    <input type="text" class="form-control" [(ngModel)]="employee.firstName" name="firstName">
-                                </div>
-                                <div class="col-6">
-                                    <label for="pwd">Tên</label>
-                                    <input type="text" class="form-control" [(ngModel)]="employee.lastName" name="lastName">
-
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <label for="pwd">Địa chỉ</label>
-                                <input type="text" class="form-control" [(ngModel)]="employee.address" name="address">
-                            </div>
-                            <div class="form-group ">
-                                <label for="pwd">Email</label>
-                                <input type="text" class="form-control" [(ngModel)]="employee.email" name="email">
-                            </div>
-                        </div>
-                        <div class="col-3">
-                            <img src="assets/img/avatars/nhuy.jpg" height="230em" width="155em"
-                                style="border-radius: 8px; border: 1px solid rgba(81, 130, 202, 0.658);padding: 5px"
-                                *ngIf="img">
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label for="pwd">Ảnh</label>
-                        <div class="custom-file">
-                            <label class="custom-file-label" for="customFile">{{imgName}}</label>
-                        </div>
-                    </div>
-                    <div class="row form-group ">
-                        <div class="col-4">
-                            <label for="pwd">Công việc</label>
-                        </div>
-                        <div class="col-8">
-                            <label for="pwd">Nơi làm việc</label>
-                            <input type="text" class="form-control" [(ngModel)]="employee.department">
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label for="pwd">Lương cơ bản</label>
-                        <input type="text" class="form-control" [(ngModel)]="employee.salary" name="currency">
-                    </div>
-                    <div class="form-group col text-center">
-                        <button type="button" class="btn btn-outline-dark center" (click)="save()"
-                            (click)="hideModal()">SAVE</button>
-                    </div>
-                </form>
-            </div>
-        </div>
-    </div>
-
-</div> -->
+      </div>
