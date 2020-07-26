@@ -17,4 +17,12 @@ export class EmployeesService {
       (`${this.apiService.apiUrl.employees.home}`);
   }
 
+  save(data: Employee): Observable<RootObj<Employee>> {
+    if (!data.id) {
+      return this.apiService.post<RootObj<Employee>>(this.apiService.apiUrl.employees.home, data);
+    } else {
+      return this.apiService.put<RootObj<Employee>>(`${this.apiService.apiUrl.employees.home}/${data.id}`, data);
+    }
+  }
+
 }

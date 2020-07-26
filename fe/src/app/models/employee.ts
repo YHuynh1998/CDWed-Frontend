@@ -1,4 +1,4 @@
-import {Department} from './department';
+
 
 export interface Employee {
     id: number;
@@ -8,11 +8,12 @@ export interface Employee {
     phoneNumber: string;
     salary: number;
     active: number;
+    deparment: number;
     image: string;
     IDCard: string;
     Hire_Date: Date;
     address: string;
     commission: number;
     Manager_ID: number;
-    Department_ID: Department;
+   
 }

@@ -18,6 +18,9 @@ export class ApiService {
     },
     timeSlots: {
       home: `${this.baseUrl}time-slots`
+    },
+    deparments: {
+      home: `${this.baseUrl}deparment`
     }
   };
 
