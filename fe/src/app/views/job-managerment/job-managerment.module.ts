@@ -16,7 +16,7 @@ import { FormsModule } from '@angular/forms';
     CommonModule,
     ModalModule.forChild(),
     JobManagermentRoutingModule,
-    NgxDatatableModule ,
+    NgxDatatableModule,
     FormsModule
   ]
 })

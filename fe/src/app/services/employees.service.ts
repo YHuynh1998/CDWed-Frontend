@@ -25,4 +25,9 @@ export class EmployeesService {
     }
   }
 
+  getEmpById(id: Number): Observable<RootObj<Employee>> {
+    return this.apiService.getID<RootObj<Employee>>
+      (`${this.apiService.apiUrl.employees.getEmp}/${id}`, id);
+  }
+
 }

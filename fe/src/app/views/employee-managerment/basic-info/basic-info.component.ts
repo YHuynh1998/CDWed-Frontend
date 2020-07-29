@@ -75,9 +75,17 @@ export class BasicInfoComponent implements OnInit {
       console.log(this.employees);
   };
 
-  showAddModal() {
-    this.addModal.show();
+  showAddModal(id) {
+    console.log('id', id);
+    if(id){
+      this.employeesService.getEmpById(id).subscribe(res => {
+        this.employee = res.data;
+      });
+      this.employee.id = id;
+    }
 
+    console.log('employee',this.employee);
+    this.addModal.show();
   }
 
   hideModal() {
@@ -101,7 +109,6 @@ save() {
     this.employees.push(res.data);
     this.loadEmployee();
   });
-
 }
 
 preview(files) {
