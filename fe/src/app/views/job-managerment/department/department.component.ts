@@ -57,8 +57,16 @@ export class DepartmentComponent implements OnInit {
   showAddModal() {
     this.addModal.show();
   }
-  showEditModal() {
+  showEditModal(id) {
+    if(id){
+      this.departmentService.getDeptById(id).subscribe(res =>{
+        this.department=res.data;
+      });
+      this.department.id=id;
+    }
+    console.log('dept',this.department);
     this.editModal.show();
+    // console.log('id',id)
   }
   hideAddModal() {
     this.imgName = "Choose file";
@@ -70,11 +78,13 @@ export class DepartmentComponent implements OnInit {
     this.img = "https://screenshotlayer.com/images/assets/placeholder.png";
     this.editModal.hide();
   }
+
   save() {
     this.departmentService.save(this.department).subscribe((res) => {
       this.departments.push(res.data);
       this.loadDepartment();
       this.addModal.hide();
+      this.editModal.hide();
     });
   }
 }
