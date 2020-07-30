@@ -2,10 +2,10 @@
   <div class="card-header">
     <div class="row">
       <div class="col">
-        <h3>Danh sách phòng ban</h3>
+        <h3 >Danh sách phòng ban</h3>
       </div>
       <div class="col-auto">
-        <button type="button" (click)="exportAsXLSX()" class="btn btn-success"><i class="fa fa-download"></i>
+        <button type="button" (click)="alertWithSuccess()" class="btn btn-success"><i class="fa fa-download"></i>
           Export</button>
 
         <button type="button" (click)="showAddModal()" class="btn btn-primary"><i class="fa fa-plus"></i>
@@ -28,7 +28,7 @@
       </ngx-datatable-column>
       <ngx-datatable-column name="Thao tác" [width]="40">
         <ng-template let-row="row" ngx-datatable-cell-template>
-          <i (click)="showEditModal(row.id)" class="fa fa-edit text-primary mr-1 pointer"></i>
+          <i (click)="showEditModal(row)" class="fa fa-edit text-primary mr-1 pointer"></i>
           <!-- <i (click)="delete(row.Emp_ID)" class="fa fa-trash-o text-danger pointer"></i> -->
         </ng-template>
       </ngx-datatable-column>
