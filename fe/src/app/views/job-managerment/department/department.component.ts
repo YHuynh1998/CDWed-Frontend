@@ -23,7 +23,7 @@ export class DepartmentComponent implements OnInit {
   // public employee: any;
   img: any = "https://screenshotlayer.com/images/assets/placeholder.png";
   imgName: string = "Choose file";
-
+  // addTaskValue: string = "";
   columns = [
     { name: "Phòng ban", prop: "name", sortTable: true },
     { name: "Địa chỉ", prop: "locationId", sortTable: true },
@@ -68,6 +68,8 @@ export class DepartmentComponent implements OnInit {
     this.imgName = "Choose file";
     this.img = "https://screenshotlayer.com/images/assets/placeholder.png";
     this.addModal.hide();
+ 
+
   }
   hideEditModal() {
     this.imgName = "Choose file";
@@ -78,18 +80,20 @@ export class DepartmentComponent implements OnInit {
   save() {
     this.departmentService.save(this.department).subscribe((res) => {
       this.departments.push(res.data);
-      this.loadDepartment();
+      // this.addTaskValue = '';
       this.addModal.hide();
       this.editModal.hide();
+      this.loadDepartment();
+      this.alertWithSuccess();
     });
   }
   alertWithSuccess(){
     Swal.fire({
       position: 'top-center',
       icon: 'success',
-      title: 'Your work has been saved',
+      title: 'Bạn đã thêm thành công',
       showConfirmButton: false,
-      // timer: 1500
+      timer: 1500
     })
   }
 }
